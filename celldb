@@ -1,0 +1,48 @@
+setwd("C:/Users/0.0/Desktop/2333/out")
+
+
+mypvals <- read.delim("pvalues.txt", check.names = FALSE)
+mymeans <- read.delim("means.txt", check.names = FALSE)
+
+
+
+nm=which(mypvals$`EmbryoCell|EndoCell`<0.05)
+tt1=mypvals[nm,]
+yy1=mymeans[nm,]
+
+write.table(tt1,"tt1.txt",row.names = F,quote = FALSE)
+write.table(yy1,"yy1.txt",row.names = F,quote = FALSE)
+which(mypvals$interacting_pair=="EPHB4_EFNB3")
+
+
+
+
+
+#######################################################
+gupup=union(which(mypvals$`EmbryoCell|EndoCell`<0.05),
+      which(mypvals$`EndoCell|EmbryoCell`<0.05))
+controlup= intersect(which(mypvals$`EmbryoCell|EndoCell_2`==1),
+                     which(mypvals$`EndoCell_2|EmbryoCell`==1))
+
+
+
+gdown=union(which(mypvals$`EmbryoCell|EndoCell_2`<0.05),
+         which(mypvals$`EndoCell_2|EmbryoCell`<0.05))
+controldown=intersect(which(mypvals$`EmbryoCell|EndoCell`==1),
+                      which(mypvals$`EndoCell|EmbryoCell`==1))
+
+
+t1up=intersect(gupup,controlup)
+
+t2down=intersect(gdown,controldown)
+
+x1up=mypvals[t1up,]
+y1up=mymeans[t1up,]
+write.table(x1up,"x1up.txt",row.names = F,quote = FALSE,sep =  "\t")
+write.table(y1up,"y1up.txt",row.names = F,quote = FALSE,sep =  "\t")
+
+x1down=mypvals[t2down,]
+y1down=mymeans[t2down,]
+write.table(x1down,"x1down.txt",row.names = F,quote = FALSE,sep =  "\t")
+write.table(y1down,"y1down.txt",row.names = F,quote = FALSE,sep =  "\t")
+
