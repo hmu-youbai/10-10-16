@@ -1,0 +1,63 @@
+
+
+setwd("C:/Users/0.0/Desktop")
+aa=read.csv("t1.csv")
+
+library(viridis)
+library(ggplot2)
+testData <- aa
+ggplot(testData, aes(x=tpye,y=city,size = percent, color=number)) + 
+geom_point() 
+
+
+
+ggplot(testData, aes(x=tpye,y=city,size = percent, color=number)) + geom_point()+
+  theme(panel.background = element_rect(fill = "white"),
+        panel.border = element_rect(colour="black",fill=NA))+
+   
+  scale_color_viridis_c(option = "plasma") 
+
+
+
+panel.background = element_rect(fill = "white", colour = "blue")
+
+
+
+ggplot(testData, aes(x=tpye,y=city,size = percent, color=number)) + geom_point()+
+  theme(panel.background = element_rect(fill = "white"),
+        panel.border = element_rect(colour="black",fill=NA))+
+  scale_color_viridis(option="H")
+  
+  
+  
+  
+  
+darkblue
+  
+  
+  
+  
+  scale_color_gradientn(colors = c("black","blue","yellow","red"))
+
+
+red、yellow、green、cyan、green、blue
+p62 <- p03 + scale_color_gradient2(low = "blue",
+                                   mid = "green", high = "red")
+p63 <- p03 + scale_color_gradientn(colors = c("blue", "green","green"
+                                              "yellow", "red"),
+                                   breaks = c(-Inf, -1, 1, Inf))
+
+p62 + p63
+
+
+colors <- colorRampPalette(c("blue", "red"))(5)
+plot(5:1, bg = colors[rank(5:1)], cex = 2, pch = 22)
+
+
+
+data_melt<-melt (data)
+names(data_melt) = c('Gene', 'Cell', 'Value')
+#注释：melt()函数把表格中的宽数据变成长数据
+
+barplot(1:10,col=rainbow(10,start=0,end=4/6))
+p<-ggplot(data_melt, aes(x = Gene, y = Cell, size = Value, color=Cell)) + geom_point()
